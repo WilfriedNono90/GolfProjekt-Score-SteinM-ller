@@ -10,7 +10,7 @@ import com.example.demo.entitäten.Score;
 
 
 public interface ScoreRepository  extends JpaRepository<Score, Long> {
-	@Query("select r from Result r where r.player.id = :id ")
+	@Query("select r from Score r where r.player.id = :id ")
 	List<Score> findByIdPlayer(@Param("id") long playerid);
 
 }

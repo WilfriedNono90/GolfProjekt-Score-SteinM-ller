@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,8 +24,11 @@ public class Player {
 	@Id
 	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER,
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true,
 			mappedBy = "player")
+	
+	//transient permet de ne pas serialiser un element
+	@JsonIgnore
 	private List<Score> score = new ArrayList<Score>();
 	
 	public void addScore (Score scoreElement) {
